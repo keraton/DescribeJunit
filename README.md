@@ -35,7 +35,7 @@ public class DescribeJunitTest {  RunNotifier runNotifier;  @Test public void So
         });
 
 
-    describe("anotherMethod", testerRunNotifier)
+    describe("anotherMethod", runNotifier)
 
         .it("should throw exception when no exception throw", RuntimeException.class, () -> {
         })
