@@ -1,6 +1,5 @@
 package com.keraton.describejunit;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runner.notification.RunNotifier;
@@ -18,7 +17,7 @@ public class DescribeJunitWithContextTest { RunNotifier runNotifier; @Test publi
     new Spec<Context>().
     describe("someMethod with context", new Context(), runNotifier)
 
-        .before((context) -> {
+        .beforeEach((context) -> {
             context.varInt = 2;
         })
 

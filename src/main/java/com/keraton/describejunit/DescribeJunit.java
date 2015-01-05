@@ -68,57 +68,61 @@ public class DescribeJunit<T> {
     }
 
 
-    public DescribeJunit ignore(String description, DescribeRunner runner) {
+    public DescribeJunit itSkip(String description, DescribeRunner runner) {
         Description desc = Description.createTestDescription(this.description, description, null);
         runNotifier.fireTestStarted(desc);
         runNotifier.fireTestIgnored(desc);
         return this;
     }
 
-    public DescribeJunit<T> ignore(String description, DescribeRunnerWithContext<T> runner) {
+    public DescribeJunit<T> itSkip(String description, DescribeRunnerWithContext<T> runner) {
         Description desc = Description.createTestDescription(this.description, description, null);
         runNotifier.fireTestStarted(desc);
         runNotifier.fireTestIgnored(desc);
+        return this;
+    }
+
+    public DescribeJunit beforeEach(DescribeRunner runner) {
+        before.add(runner);
+        return this;
+    }
+
+    public DescribeJunit<T> beforeEach(DescribeRunnerWithContext<T> runner) {
+        before.add(runner);
+        return this;
+    }
+
+    public DescribeJunit afterEach(DescribeRunner runner) {
+        afters.add(runner);
+        return this;
+    }
+
+    public DescribeJunit<T> afterEach(DescribeRunnerWithContext<T> runner) {
+        afters.add(runner);
         return this;
     }
 
     public DescribeJunit before(DescribeRunner runner) {
-        before.add(runner);
+        this.runHelper.runMethod(runner, context);
         return this;
     }
 
     public DescribeJunit<T> before(DescribeRunnerWithContext<T> runner) {
-        before.add(runner);
+        this.runHelper.runMethod(runner, context);
         return this;
     }
 
     public DescribeJunit after(DescribeRunner runner) {
-        afters.add(runner);
+        this.runHelper.runMethod(runner, context);
         return this;
     }
 
     public DescribeJunit<T> after(DescribeRunnerWithContext<T> runner) {
-        afters.add(runner);
-        return this;
-    }
-
-    public DescribeJunit beforeMethod(DescribeRunner runner) {
         this.runHelper.runMethod(runner, context);
         return this;
     }
 
-    public DescribeJunit<T>  beforeMethod(DescribeRunnerWithContext<T> runner) {
-        this.runHelper.runMethod(runner, context);
-        return this;
-    }
-
-    public DescribeJunit afterMethod(DescribeRunner runner) {
-        this.runHelper.runMethod(runner, context);
-        return this;
-    }
-
-    public DescribeJunit<T>  afterMethod(DescribeRunnerWithContext<T> runner) {
-        this.runHelper.runMethod(runner, context);
+    public DescribeJunit<T> it(String description) {
         return this;
     }
 }

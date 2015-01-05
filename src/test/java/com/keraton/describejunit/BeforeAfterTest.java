@@ -10,31 +10,32 @@ import static org.junit.Assert.assertEquals;
 @RunWith(DescribeJunitRunner.class)
 public class BeforeAfterTest { RunNotifier runNotifier; @Test public void SomeClass(){
 
-    final StringBuilder sb = new StringBuilder();
+final StringBuilder sb = new StringBuilder();
 
-    describe("someMethod with context", runNotifier)
+describe("someMethod with context", runNotifier)
 
-        .beforeMethod(() -> {
-            sb.append("beforeMethod").append(";");
-        })
+    .before(() -> {
+        sb.append("before").append(";");
+    })
 
-        .before(() -> {
-            sb.append("before").append(";");
-        })
+    .beforeEach(() -> {
+        sb.append("beforeEach").append(";");
+    })
 
-        .after(() -> {
-            sb.append("after").append(";");
-        })
+    .afterEach(() -> {
+        sb.append("afterEach").append(";");
+    })
 
-        .it("should run ", () -> {
-        })
+    .it("should run ", () -> {
+    })
 
-        .it("should run too", () -> {
-        })
+    .it("should run too", () -> {
+    })
 
-        .afterMethod(() -> {
-            sb.append("afterMethod").append(";");
-        });
+    .after(() -> {
+        sb.append("after").append(";");
+    });
 
-    assertEquals("beforeMethod;before;after;before;after;afterMethod;", sb.toString());
+assertEquals("before;beforeEach;afterEach;beforeEach;afterEach;after;", sb.toString());
+
 }}

@@ -21,18 +21,20 @@ public class DescribeJunitTest {  RunNotifier runNotifier;  @Test public void So
     // To see the test with provided runNotifier, replace testerRunNotifier with runNotifier
     describe("someMethod", testerRunNotifier)
 
+        .it("is not implemented yet")
+
         .it("should run nicely", () -> {
             assertTrue(true);
         })
 
-        .ignore("should be ignored", () -> {
+        .itSkip("should be ignored", () -> {
         })
 
         .it("should test throw exception", RuntimeException.class, () -> {
             throw new RuntimeException("Should be catch");
         })
 
-        .afterMethod(() -> {
+        .after(() -> {
             System.out.println("End of test");
         });
 
