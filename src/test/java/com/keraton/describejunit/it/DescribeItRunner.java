@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 public class DescribeItRunner {
 
     @It("should run this test with annotation value")
-    public void _1(){
+    public void use_case_1(){
+
     }
 }
